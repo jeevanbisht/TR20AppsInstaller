@@ -43,7 +43,7 @@ while ($DonotMatch)
     else
     {
         cls
-        Write-Host "Codes Dont Match " 
+        Write-Host "Codes Dont Match" 
     }
     
     $AppProxyConnector = $Code
