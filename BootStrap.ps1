@@ -85,7 +85,7 @@ New-Item -Force -ItemType directory -Path $NodeApp
 Expand-Archive  "$env:TEMP\nodeapp.zip" -DestinationPath $NodeApp -Force 
 
 $NodeJSPortFile = $NodeApp + "\header-demo-app-master\.env"
-new-item =-ItemType file -path $NodeJSPortFile
+New-Item -ItemType file -path $NodeJSPortFile
 $NodeConfig = "port =70" + $ParticipantCode
 $NodeConfig > $NodeJSPortFile
     
