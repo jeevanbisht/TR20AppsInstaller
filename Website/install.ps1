@@ -67,7 +67,7 @@ Function Create-WebAppAndPool{
 }
 
 
-Function Create-WebSite{
+Function Create-WebSite {
     param(
         [Parameter(Mandatory=$true)][string]$WebSiteName,
         [Parameter(Mandatory=$true)][string]$WebSitePath,
@@ -227,7 +227,7 @@ Write-Progress -PercentComplete 56 -id 1 -Activity "App Proxy Demo Installer " -
 Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Status "Creating Web Application 1" 
 
 $PortNumber = "80" + $ParticipantCode
-Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber
+Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
