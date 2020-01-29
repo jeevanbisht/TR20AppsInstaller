@@ -173,6 +173,9 @@ Function Add-KCD {
 [string] $appName = "WIASample"
 [string] $appPath = $BootStrapFolder + "WIA"
 
+[string] $appName4 = "WIASample2"
+[string] $appPath4 = $BootStrapFolder + "WIA"
+
 [string] $appName2 = "FormsSample"
 [string] $appPath2 = $BootStrapFolder + "Forms"
 
@@ -232,12 +235,13 @@ Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Stat
 $PortNumber = "80" + $ParticipantCode
 Write-Progress -PercentComplete 11 -id 2 -Activity $WebSiteName2 -Status  $PortNumber
 Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
-sleep 10
-#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
-#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
-#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
 
-#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
+Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
+Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
+Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
+Create-WebAppAndPool -SiteName $WebSiteName2 -AppName $appName4 -AppFolder $appPath4
+
+
 
 
 Write-Progress -PercentComplete 60 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
@@ -251,6 +255,7 @@ Write-Progress -PercentComplete 21 -id 2 -Activity "Configuration Started" -Stat
 Set-AppPoolCredentials -AppName $appName -UserName $AppPoolUserName -Password $AppPoolPassword -Domain $AppPoolDomain
 Set-AppPoolCredentials -AppName $appName2 -UserName $AppPoolUserName -Password $AppPoolPassword -Domain $AppPoolDomain
 Set-AppPoolCredentials -AppName $appName3 -UserName $AppPoolUserName -Password $AppPoolPassword -Domain $AppPoolDomain
+Set-AppPoolCredentials -AppName $appName4 -UserName $AppPoolUserName -Password $AppPoolPassword -Domain $AppPoolDomain
 #Set-AppPoolCredentials -AppName $appName3 -UserName $AppPoolUserName -Password $AppPoolPassword -Domain $AppPoolDomain
 
 Write-Progress -PercentComplete 70 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
@@ -262,6 +267,7 @@ Write-Progress -PercentComplete 71 -id 1 -Activity "App Proxy Demo Installer " -
 Write-Progress -PercentComplete 50 -id 2 -Activity "Configuration Started" -Status "Set Kerberos !!" 
 
 Set-KerberosAuthForAppPool -WebSiteName $WebSiteName -AppName $appName
+Set-KerberosAuthForAppPool -WebSiteName $WebSiteName2 -AppName $appName4
 
 Write-Progress -PercentComplete 80 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 70 -id 2 -Activity "Configuration Started" -Status "Set Kerberos   Completed !!" 
@@ -272,6 +278,7 @@ Write-Progress -PercentComplete 81 -id 1 -Activity "App Proxy Demo Installer " -
 Write-Progress -PercentComplete 70 -id 2 -Activity "Configuration Started" -Status "Set SPN !!" 
 
 Add-SPN -UserName $AppPoolUserName
+
 
 Write-Progress -PercentComplete 90 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 80 -id 2 -Activity "Configuration Started" -Status "Set SPN Completed !!" 
