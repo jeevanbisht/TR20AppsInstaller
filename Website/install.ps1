@@ -231,6 +231,7 @@ Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Stat
 
 $PortNumber = "80" + $ParticipantCode
 Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
+sleep 10
 #Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
 #Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
 #Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
