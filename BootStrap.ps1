@@ -19,6 +19,7 @@ cls
 ##This can be customized ensure the folder path has trailing "\" 
 $destinationDirectory ="c:\AppDemov1\"
 $NodeApp ="c:\NodeApp\"
+$ParticipantCode=""
 
 if ([int]$PSVersionTable.PSVersion.Major -lt 5)
 {
@@ -46,7 +47,7 @@ while ($DonotMatch)
         Write-Host "Codes Dont Match" 
     }
     
-    $AppProxyConnector = $Code
+    $ParticipantCode = $Code
 }
 
 
@@ -82,7 +83,7 @@ Expand-Archive  "$env:TEMP\nodeapp.zip" -DestinationPath $NodeApp -Force
 
 
 $args = @()
-$args += ("$kickStartFolder", "$AppProxyConnector")
+$args += ("$kickStartFolder", "$ParticipantCode")
 Invoke-Script $kickStartScript $args
 
 

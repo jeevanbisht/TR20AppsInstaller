@@ -23,11 +23,11 @@ param
 
     
     [Parameter(Mandatory=$true)]
-    [string] $AppProxyConnector
+    [string] $ParticipantCode
 )
 
 Write-Host $BootStrapFolder
-Write-host $AppProxyConnector
+Write-host $ParticipantCode
 
 
 
@@ -62,6 +62,30 @@ Function Create-WebAppAndPool{
     
     #New-WebApplication -Name testApp -Site 'Default Web Site' -PhysicalPath c:\test -ApplicationPool DefaultAppPool
     New-WebApplication -Name $AppName -Site $SiteName -PhysicalPath $AppFolder -ApplicationPool $iisAppPoolName 
+    
+           
+}
+
+
+Function Create-WebSite{
+    param(
+        [Parameter(Mandatory=$true)][string]$WebSiteName,
+        [Parameter(Mandatory=$true)][string]$WebSitePath,
+        [Parameter(Mandatory=$true)][string]$PortNumber
+
+         )
+
+            
+    #navigate to the sites root
+    cd IIS:\Sites\
+
+    #--------------------------------------------------
+    #Create web Application and assign Application Pool
+    #--------------------------------------------------
+    
+    #New-WebApplication -Name testApp -Site 'Default Web Site' -PhysicalPath c:\test -ApplicationPool DefaultAppPool
+    New-WebSite -Name $WebSiteName -Port $PortNumber  -PhysicalPath $WebSitePath
+
     
            
 }
@@ -141,6 +165,8 @@ Function Add-KCD {
 [string] $WebSiteName = "Default Web Site"
 [string] $AppPoolDomain = $env:USERDOMAIN
 
+[string] $WebSiteName2 = "AppProxyApps-" + $ParticipantCode
+
 [string] $appName = "WIASample"
 [string] $appPath = $BootStrapFolder + "WIA"
 
@@ -152,10 +178,10 @@ Function Add-KCD {
 
 [string] $Randomizer = -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_})
 
-[string] $AppPoolUserName = $Randomizer +"-AppPool"
+[string] $AppPoolUserName = "AAAD" + $Randomizer +"-AppPool"
 
 [Reflection.Assembly]::LoadWithPartialName("System.Web")
-[string] $passrandom=[system.web.security.membership]::GeneratePassword(8,3)
+[string] $passrandom=[system.web.security.membership]::GeneratePassword(10,3)
 [string] $AppPoolPassword = "MSFT" + $passrandom
 
 
@@ -200,6 +226,8 @@ Write-Progress -PercentComplete 10 -id 2 -Activity "Configuration Started" -Stat
 Write-Progress -PercentComplete 56 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Status "Creating Web Application 1" 
 
+$PortNumber = "80" + $ParticipantCode
+Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
