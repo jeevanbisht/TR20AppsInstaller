@@ -75,7 +75,7 @@ function Invoke-Script
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 Invoke-WebRequest -Uri "https://github.com/jeevanbisht/TR20AppsInstaller/archive/master.zip"
-(New-Object Net.WebClient).DownloadFile('https://github.com/jeevanbisht/TR20AppsInstaller/archive/master.zip',"$env:TEMP\destinationDirectory.zip");
+(New-Object Net.WebClient).DownloadFile('https://github.com/jeevanbisht/TR20AppsInstaller/archive/master.zip',"$env:TEMP\master.zip");
 New-Item -Force -ItemType directory -Path $destinationDirectory
 Expand-Archive  "$env:TEMP\master.zip" -DestinationPath $destinationDirectory -Force 
 
