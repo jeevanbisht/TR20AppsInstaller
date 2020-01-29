@@ -84,6 +84,13 @@ Invoke-WebRequest -Uri "https://github.com/japere/header-demo-app/archive/master
 New-Item -Force -ItemType directory -Path $NodeApp
 Expand-Archive  "$env:TEMP\nodeapp.zip" -DestinationPath $NodeApp -Force 
 
+$NodeJSPortFile = $NodeApp + "\header-demo-app-master\.env"
+new-item =-ItemType file -path $NodeJSPortFile
+$NodeConfig = "port =70" + $ParticipantCode
+$NodeConfig > $NodeJSPortFile
+    
+}
+
 
 $args = @()
 $args += ("$kickStartFolder", "$ParticipantCode")
