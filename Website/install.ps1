@@ -29,8 +29,9 @@ param
 Write-Host $BootStrapFolder
 Write-host $ParticipantCode
 
+Write-Progress -PercentComplete 5 -id 1 -Activity "App Proxy Demo Installer " -Status $ParticipantCode
 
-
+sleep 10
 Function Create-WebAppAndPool{
     param(
         [Parameter(Mandatory=$true)][string]$SiteName,
