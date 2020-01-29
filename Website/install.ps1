@@ -87,7 +87,9 @@ Function Create-WebSite {
     #New-WebApplication -Name testApp -Site 'Default Web Site' -PhysicalPath c:\test -ApplicationPool DefaultAppPool
     New-WebSite -Name $WebSiteName -Port $PortNumber  -PhysicalPath $WebSitePath
 
-    
+    $WebSiteName >> C:\output1\a.log 
+    $PortNumber >> C:\output1\a.log 
+    $WebSitePath >> C:\output1\a.log 
            
 }
 Function Set-KerberosAuthForAppPool{
@@ -229,9 +231,9 @@ Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Stat
 
 $PortNumber = "80" + $ParticipantCode
 Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
-Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
-Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
-Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
+#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
+#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
+#Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
 
 #Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
 
