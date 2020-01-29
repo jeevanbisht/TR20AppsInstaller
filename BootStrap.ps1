@@ -79,7 +79,6 @@ Invoke-WebRequest -Uri "https://github.com/jeevanbisht/TR20AppsInstaller/archive
 New-Item -Force -ItemType directory -Path $destinationDirectory
 Expand-Archive  "$env:TEMP\master.zip" -DestinationPath $destinationDirectory -Force 
 
-
 Invoke-WebRequest -Uri "https://github.com/japere/header-demo-app/archive/master.zip"
 (New-Object Net.WebClient).DownloadFile('https://github.com/japere/header-demo-app/archive/master.zip',"$env:TEMP\nodeapp.zip");
 New-Item -Force -ItemType directory -Path $NodeApp
