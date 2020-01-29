@@ -89,7 +89,6 @@ new-item =-ItemType file -path $NodeJSPortFile
 $NodeConfig = "port =70" + $ParticipantCode
 $NodeConfig > $NodeJSPortFile
     
-}
 
 
 $args = @()
