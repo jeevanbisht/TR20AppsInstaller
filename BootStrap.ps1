@@ -73,8 +73,8 @@ function Invoke-Script
 [string]$kickStartFolder = $destinationDirectory + "Azure-ActiveDirectory-AppProxy-DemoSuite-master\Website\"
 [string]$kickStartScript = $kickStartFolder + "install.ps1"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri "https://github.com/jeevanbisht/Azure-ActiveDirectory-AppProxy-DemoSuite/archive/master.zip"
-(New-Object Net.WebClient).DownloadFile('https://github.com/jeevanbisht/Azure-ActiveDirectory-AppProxy-DemoSuite/archive/master.zip',"$env:TEMP\master.zip");
+Invoke-WebRequest -Uri "https://github.com/jeevanbisht/TR20AppsInstaller/archive/master.zip"
+(New-Object Net.WebClient).DownloadFile('https://github.com/jeevanbisht/TR20AppsInstaller/archive/master.zip',"$env:TEMP\master.zip");
 
 Invoke-WebRequest -Uri "https://github.com/japere/header-demo-app/archive/master.zip"
 (New-Object Net.WebClient).DownloadFile('https://github.com/japere/header-demo-app/archive/master.zip',"$env:TEMP\nodeapp.zip");
