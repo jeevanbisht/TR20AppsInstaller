@@ -31,7 +31,6 @@ Write-host $ParticipantCode
 
 Write-Progress -PercentComplete 5 -id 1 -Activity "App Proxy Demo Installer " -Status $ParticipantCode
 
-sleep 10
 Function Create-WebAppAndPool{
     param(
         [Parameter(Mandatory=$true)][string]$SiteName,
@@ -86,11 +85,7 @@ Function Create-WebSite {
     
     #New-WebApplication -Name testApp -Site 'Default Web Site' -PhysicalPath c:\test -ApplicationPool DefaultAppPool
     New-WebSite -Name $WebSiteName -Port $PortNumber  -PhysicalPath $WebSitePath
-
-    $WebSiteName >> C:\output1\a.log 
-    $PortNumber >> C:\output1\a.log 
-    $WebSitePath >> C:\output1\a.log 
-           
+          
 }
 Function Set-KerberosAuthForAppPool{
     param(
@@ -184,7 +179,7 @@ Function Add-KCD {
 
 [string] $Randomizer = -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_})
 
-[string] $AppPoolUserName = "AAAD" + $Randomizer +"-AppPool"
+[string] $AppPoolUserName = "AD-" + $Randomizer +"-AppPool"
 
 [Reflection.Assembly]::LoadWithPartialName("System.Web")
 [string] $passrandom=[system.web.security.membership]::GeneratePassword(10,3)
@@ -235,7 +230,7 @@ Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Stat
 $PortNumber = "80" + $ParticipantCode
 Write-Progress -PercentComplete 11 -id 2 -Activity $WebSiteName2 -Status  $PortNumber
 Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
-
+start-sleep 2
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName -AppFolder $appPath
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName2 -AppFolder $appPath2
 Create-WebAppAndPool -SiteName $WebSiteName -AppName $appName3 -AppFolder $appPath3
@@ -247,7 +242,7 @@ Create-WebAppAndPool -SiteName $WebSiteName2 -AppName $appName4 -AppFolder $appP
 Write-Progress -PercentComplete 60 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 20 -id 2 -Activity "Configuration Started" -Status "Creating Web Application 1 Completed !!" 
 
-sleep(2)
+start-sleep 2
 ##Set App Pool Credentials
 Write-Progress -PercentComplete 61 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 21 -id 2 -Activity "Configuration Started" -Status "Set App Pool Credentials " 
