@@ -183,7 +183,8 @@ Function Add-KCD {
 
 [Reflection.Assembly]::LoadWithPartialName("System.Web")
 [string] $passrandom=[system.web.security.membership]::GeneratePassword(10,3)
-[string] $AppPoolPassword = "MSFT" + $passrandom
+##Making Static for TRLab
+[string] $AppPoolPassword = "MT" + "TRPassword#20202"
 
 
 
