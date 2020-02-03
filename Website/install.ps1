@@ -228,7 +228,7 @@ Write-Progress -PercentComplete 10 -id 2 -Activity "Configuration Started" -Stat
 Write-Progress -PercentComplete 56 -id 1 -Activity "App Proxy Demo Installer " -Status "Starting Configuration" 
 Write-Progress -PercentComplete 11 -id 2 -Activity "Configuration Started" -Status "Creating Web Application 1" 
 
-$PortNumber = "8" + $ParticipantCode
+$PortNumber = "40" + $ParticipantCode
 Write-Progress -PercentComplete 11 -id 2 -Activity $WebSiteName2 -Status  $PortNumber
 Create-WebSite -WebSiteName $WebSiteName2 -PortNumber $PortNumber -WebSitePath "C:\inetpub\wwwroot"
 start-sleep 2
